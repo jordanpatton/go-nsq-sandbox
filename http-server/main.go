@@ -10,8 +10,8 @@ import (
 
 // pre-parse templates
 var templates = template.Must(template.ParseFiles(
-	path.Join("templates", "edit.html"),
-	path.Join("templates", "view.html"),
+	path.Join("http-server", "templates", "edit.html"),
+	path.Join("http-server", "templates", "view.html"),
 ))
 
 // only allow specific templates (otherwise insecure)
