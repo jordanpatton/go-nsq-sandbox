@@ -5,7 +5,7 @@ import (
 	"path"
 )
 
-var pathToPages = path.Join("http-server", "pages")
+const pathToPages = "pages"
 
 // Page ...
 type Page struct {

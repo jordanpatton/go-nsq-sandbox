@@ -9,17 +9,13 @@ import (
 
 // TailHandler ...
 type TailHandler struct {
-	messagesShown int
-	topicName     string
-	totalMessages int
+	topic string
 }
 
 // HandleMessage (for `go-nsq`'s `Consumer`)
 func (th *TailHandler) HandleMessage(m *nsq.Message) error {
-	th.messagesShown++
-
 	// print topic
-	_, err := os.Stdout.WriteString(th.topicName)
+	_, err := os.Stdout.WriteString(th.topic)
 	if err != nil {
 		log.Fatalf("ERROR: failed to write to os.Stdout - %s", err)
 	}
@@ -36,9 +32,6 @@ func (th *TailHandler) HandleMessage(m *nsq.Message) error {
 	_, err = os.Stdout.WriteString("\n")
 	if err != nil {
 		log.Fatalf("ERROR: failed to write to os.Stdout - %s", err)
-	}
-	if th.totalMessages > 0 && th.messagesShown >= th.totalMessages {
-		os.Exit(0)
 	}
 
 	return nil

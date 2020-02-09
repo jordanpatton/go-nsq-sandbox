@@ -18,7 +18,6 @@ const (
 	nsqdTCPAddress        = "127.0.0.1:4150"
 	nsqlookupdHTTPAddress = "127.0.0.1:4161"
 	topic                 = "test"
-	totalMessages         = 0
 )
 
 var (
@@ -44,7 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	consumer.AddHandler(&TailHandler{topicName: topic, totalMessages: totalMessages})
+	consumer.AddHandler(&TailHandler{topic: topic})
 
 	err = consumer.ConnectToNSQD(nsqdTCPAddress)
 	if err != nil {
