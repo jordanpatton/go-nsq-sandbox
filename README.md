@@ -21,9 +21,12 @@ curl -d 'test 2' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 3' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 4' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 5' 'http://127.0.0.1:4151/pub?topic=test'
+
+# install dependencies
+go get github.com/nsqio/go-nsq
 ```
 
-# Debugging
+# Testing
 ```shell
 # run nsq subscriber
 go run nsq-subscriber/main.go nsq-subscriber/tail.go
