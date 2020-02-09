@@ -2,14 +2,19 @@
 ```shell
 # install nsq (see https://nsq.io/deployment/installing.html)
 brew install nsq
+
 # start nsqlookup daemon
 nsqlookupd
+
 # start nsq daemon
 nsqd --lookupd-tcp-address=127.0.0.1:4160 --broadcast-address=127.0.0.1
+
 # (optional) start browser-based admin ui at http://127.0.0.1:4171
 nsqadmin --lookupd-http-address=127.0.0.1:4161
+
 # (optional) dump messages to file (automatically creates `test` topic)
 nsq_to_file --topic=test --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161
+
 # send messages to `test` topic
 curl -d 'test 1' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 2' 'http://127.0.0.1:4151/pub?topic=test'
