@@ -10,7 +10,10 @@ import (
 )
 
 // pre-parse templates
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles(
+	path.Join("templates", "edit.html"),
+	path.Join("templates", "view.html"),
+))
 
 // only allow specific templates (otherwise insecure)
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
