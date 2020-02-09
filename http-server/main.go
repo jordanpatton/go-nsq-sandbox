@@ -65,12 +65,16 @@ func handleView(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func main() {
+	// normal routes
 	http.HandleFunc("/edit/", makeHandler(handleEdit))
 	http.HandleFunc("/save/", makeHandler(handleSave))
 	http.HandleFunc("/view/", makeHandler(handleView))
-	http.HandleFunc("/publish/", func(w http.ResponseWriter, r *http.Request) {
+
+	// nsq publisher route
+	http.HandleFunc("/nsq/", func(w http.ResponseWriter, r *http.Request) {
 		PublishToNsq("test", "message")
 		fmt.Fprintf(w, "<h1>publish</h1><div>%s</div>", r.URL.Path)
 	})
+
 	log.Fatal(http.ListenAndServe(":4001", nil))
 }
