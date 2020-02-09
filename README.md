@@ -33,6 +33,13 @@ go run nsq-subscriber/main.go nsq-subscriber/disk.go
 
 # run http server
 go run http-server/main.go http-server/nsq.go http-server/page.go
+
+# visit normal route http://localhost:4001/view/asdf
+# visit nsq publisher route http://localhost:4001/nsq
+
+# if http-server refuses to quit...
+netstat -vanp tcp | grep 4001 # OR `sudo lsof -i tcp:4001`
+kill -9 <pid>
 ```
 
 # Links
