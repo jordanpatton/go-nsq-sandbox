@@ -43,7 +43,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	consumer.AddHandler(&TailHandler{topic: topic})
+	// switch to TailHandler for debugging
+	consumer.AddHandler(&DiskHandler{topic: topic})
+	// consumer.AddHandler(&TailHandler{topic: topic})
 
 	err = consumer.ConnectToNSQD(nsqdTCPAddress)
 	if err != nil {

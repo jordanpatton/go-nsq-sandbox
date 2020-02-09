@@ -28,8 +28,8 @@ go get github.com/nsqio/go-nsq
 
 # Testing
 ```shell
-# run nsq subscriber
-go run nsq-subscriber/main.go nsq-subscriber/tail.go
+# run nsq subscriber (use `nsq-subscriber/tail.go` with TailHandler)
+go run nsq-subscriber/main.go nsq-subscriber/disk.go
 
 # run http server
 go run http-server/main.go http-server/nsq.go http-server/page.go
