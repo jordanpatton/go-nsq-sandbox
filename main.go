@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"path"
@@ -17,26 +16,6 @@ var templates = template.Must(template.ParseFiles(
 
 // only allow specific templates (otherwise insecure)
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
-
-// Page struct
-type Page struct {
-	Title string
-	Body  []byte
-}
-
-func (p *Page) save() error {
-	filename := p.Title + ".txt"
-	return ioutil.WriteFile(path.Join("pages", filename), p.Body, 0600)
-}
-
-func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
-	body, err := ioutil.ReadFile(path.Join("pages", filename))
-	if err != nil {
-		return nil, err
-	}
-	return &Page{Title: title, Body: body}, nil
-}
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	err := templates.ExecuteTemplate(w, tmpl+".html", p)
@@ -57,7 +36,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 }
 
 func handleEdit(w http.ResponseWriter, r *http.Request, title string) {
-	p, err := loadPage(title)
+	p, err := LoadPage(title)
 	if err != nil {
 		p = &Page{Title: title}
 	}
@@ -76,7 +55,7 @@ func handleSave(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func handleView(w http.ResponseWriter, r *http.Request, title string) {
-	p, err := loadPage(title)
+	p, err := LoadPage(title)
 	if err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
 		return

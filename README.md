@@ -1,4 +1,4 @@
-# Getting Started
+# Installing
 ```shell
 # install nsq (see https://nsq.io/deployment/installing.html)
 brew install nsq
@@ -16,6 +16,11 @@ curl -d 'test 2' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 3' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 4' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 5' 'http://127.0.0.1:4151/pub?topic=test'
+```
+
+# Debugging
+```shell
+go run page.go main.go
 ```
 
 # Links
