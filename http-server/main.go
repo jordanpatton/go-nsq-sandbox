@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -67,5 +68,9 @@ func main() {
 	http.HandleFunc("/edit/", makeHandler(handleEdit))
 	http.HandleFunc("/save/", makeHandler(handleSave))
 	http.HandleFunc("/view/", makeHandler(handleView))
+	http.HandleFunc("/publish/", func(w http.ResponseWriter, r *http.Request) {
+		PublishToNsq("test", "message")
+		fmt.Fprintf(w, "<h1>publish</h1><div>%s</div>", r.URL.Path)
+	})
 	log.Fatal(http.ListenAndServe(":4001", nil))
 }

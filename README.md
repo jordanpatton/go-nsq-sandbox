@@ -25,7 +25,7 @@ curl -d 'test 5' 'http://127.0.0.1:4151/pub?topic=test'
 
 # Debugging
 ```shell
-go run http-server/main.go http-server/page.go
+go run http-server/main.go http-server/nsq.go http-server/page.go
 ```
 
 # Links
