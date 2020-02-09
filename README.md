@@ -17,3 +17,6 @@ curl -d 'test 3' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 4' 'http://127.0.0.1:4151/pub?topic=test'
 curl -d 'test 5' 'http://127.0.0.1:4151/pub?topic=test'
 ```
+
+# Links
+- https://golang.org/doc/articles/wiki/
