@@ -25,8 +25,13 @@ curl -d 'test 5' 'http://127.0.0.1:4151/pub?topic=test'
 
 # Debugging
 ```shell
+# run nsq subscriber
+go run nsq-subscriber/main.go nsq-subscriber/tail.go
+
+# run http server
 go run http-server/main.go http-server/nsq.go http-server/page.go
 ```
 
 # Links
 - https://golang.org/doc/articles/wiki/
+- https://github.com/nsqio/nsq/tree/master/apps/nsq_tail
